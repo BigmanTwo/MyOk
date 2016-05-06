@@ -44,7 +44,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 Gson gson=new Gson();
-                BooksM booksm=gson.fromJson(response.toString(),BooksM.class);
+//                BooksM booksm=gson.fromJson(response.toString(),BooksM.class);第一种
+                BooksM booksm=gson.fromJson(response.body().string(),BooksM.class);//第二种
+
                 BookZ bookz=booksm.getResult();
                 mList=bookz.getData();
                 runOnUiThread(new Runnable() {
